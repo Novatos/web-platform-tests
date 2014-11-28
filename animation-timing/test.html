@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test animation do nothing at all</title>
+        <script src="/resources/testharness.js"></script>
+        <script src="/resources/testharnessreport.js"></script>
+        <link rel="help" href="https://w3c.github.io/web-performance/specs/RequestAnimationFrame/Overview.html#dom-windowanimationtiming-cancelanimationframe"/>
+    </head>
+    <body>
+    <div id="log"></div>
+    <script>
+        test(function (t) {
+            function start() {
+                animationStartTime = window.performance.now();
+                requestId = window.requestAnimationFrame(animate);
+            }
+        }, "Se debe de obtener los fps de la animación");
+
+        test(function (t) {
+            function stop() {
+                if (requestId)
+                    window.cancelAnimationFrame(requestId);
+                requestId = 0;
+            }
+        }, "Se debe parar la animación");
+    </script>
+    </body>
+</html>
